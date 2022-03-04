@@ -1,5 +1,5 @@
 resource "aws_security_group" "jenkins-sg" {
-  vpc_id = module.vpc.vpc_id
+  vpc_id = aws_vpc.main.id
   name = "allow-ssh"
   description = "security group that allows ssh and all egress traffic"
   egress {
@@ -15,7 +15,7 @@ resource "aws_security_group" "jenkins-sg" {
       protocol = "tcp"
       cidr_blocks = ["0.0.0.0/0"]
   } 
-tags {
+  tags = {
     Name = "jenkins-sg"
   }
 }
