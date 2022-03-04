@@ -1,17 +1,18 @@
 #!/bin/bash 
 # I'm using this script to set install and start Jenkins after instance is deployed.
 
-yum -y update
- 
-yum install -y yum-utils
 
-yum-config-manager \
-    --add-repo \
-    https://download.docker.com/linux/centos/docker-ce.repo
+yum update -y
 
-yum -y install docker-ce docker-ce-cli containerd.io
+amazon-linux-extras  -y install docker
+
+service docker start
+
+systemctl enable docker
 
 systemctl start docker
+
+usermod -a -G docker ec2-user
 
 docker pull jenkins/jenkins
 
