@@ -1,3 +1,5 @@
+# Defining all VPC and network related configurations. 
+
 # Internet VPC
 resource "aws_vpc" "main" {
     cidr_block = "10.0.0.0/16"
@@ -30,7 +32,7 @@ resource "aws_subnet" "main-private-1" {
     availability_zone = "eu-west-1a"
 
     tags = {
-        Name = "main-priv-1"
+        Name = "main-private-1"
     }
 }
 
