@@ -4,7 +4,8 @@
 
 yum update -y
 
-amazon-linux-extras  -y install docker
+# this command is to install docker on the Amazon Linux AMI. DOES NOT REQUIRE -y
+amazon-linux-extras install docker
 
 service docker start
 
