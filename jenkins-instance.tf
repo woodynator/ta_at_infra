@@ -42,3 +42,24 @@ resource "aws_key_pair" "deployer" {
    key_name = "ta_attraqt"
    public_key = file("./ta_attraqt.pub")
 }
+
+
+terraform {
+  backend "s3" {
+    bucket         = "jm-tf-state"
+    key            = "infrajenkins/terraform.tfstate"
+    region         = "eu-west-1"
+    dynamodb_table = "jm-tf-locks-table-infrajenkins"
+  }
+}
+ 
+ 
+resource "aws_dynamodb_table" "terraform_locks" {
+  name         = "jm-tf-locks-table-eks"
+  billing_mode = "PAY_PER_REQUEST"
+  hash_key     = "LockID"
+  attribute {
+    name = "LockID"
+    type = "S"
+  }
+}
