@@ -33,14 +33,21 @@ resource "aws_key_pair" "deployer" {
 }
 
 # this block creates the S3 bucket that will be used by terraform for remote tf states. 
-terraform {
-  backend "s3" {
-    bucket         = "jm-tf-state"
-    key            = "infrajenkins/terraform.tfstate"
-    region         = "eu-west-1"
-    dynamodb_table = "jm-tf-locks-table-infrajenkins"
-  }
-}
+
+# resource "aws_s3_bucket" "bucket" {
+#     bucket = "jm-tf-state"
+#     acl = "private"   
+# }
+
+
+# terraform {
+#   backend "s3" {
+#     bucket         = "jm-tf-state"
+#     key            = "infrajenkins/terraform.tfstate"
+#     region         = "eu-west-1"
+#     dynamodb_table = "jm-tf-locks-table-infrajenkins"
+#   }
+# }
  
 # this block creates the DynamoDB table that will be used by terraform for remote tf states. 
 
