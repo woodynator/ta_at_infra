@@ -2,7 +2,7 @@ resource "aws_instance" "ec2" {
  
   # Selected AMI is the AWS Linux AMI. ID is for eu-west-1 region
   ami         = "ami-080af029940804103"
-  instance_type = "t2.micro"
+  instance_type = "t2.small"
 
   # specify key. defined below
   key_name = aws_key_pair.deployer.key_name
@@ -28,8 +28,8 @@ resource "aws_instance" "ec2" {
 # Since access with key is default, a pre-created keypair is used. 
 
 resource "aws_key_pair" "deployer" {
-   key_name = "ta_attraqt"
-   public_key = file("./ta_attraqt.pub")
+   key_name = "ta_at"
+   public_key = file("./ta_at.pub")
 }
 
 # this block creates the S3 bucket that will be used by terraform for remote tf states. 
